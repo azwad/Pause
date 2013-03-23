@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use Pause;
+use Pause2;
 use feature 'say';
 pause;
 my %hash = (
@@ -14,6 +14,19 @@ my %hash = (
 my $ans = choice(\%hash);
 
 say $hash{$ans};
+
+my %hash2 = (
+	qq => 'a',
+	2 => 'b',
+	wew => 'c',
+	99 => 'five',
+	01 => 'five',
+	a => 'five',
+);
+
+$ans = choice(\%hash2);
+
+say $hash2{$ans};
 
 my @array = qw(a b web 3 tset);
 

@@ -78,24 +78,16 @@ sub choice2 {
 	for ( my $i=1; $i <= $#array; $i++) {
 		say "$i :$array[$i]";
 	}
-	my $num = $#array;
-	my $num2;
-	if ($num >= 9){
-		$num2 = 9;
-	}else {
-		$num2 = $num;
-	}
-	my $regex = qr/[0-$num2]/;
 
 	while (1) {
 		my $ans = <STDIN>;
 		chomp( $ans );
-		unless ($ans =~ /$regex/){
-			say "type which in (1..$num)";
+		unless ($ans =~ /[0-9]/){
+			say "type which in (1..$#array)";
 			next;
 		}
 		return $array[$ans] if ( $array[$ans] );
-		say "type  which in (1..$num)";
+		say "type  which in (1..$#array)";
 	}
 }
 
