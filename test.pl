@@ -15,10 +15,19 @@ my $ans = choice(\%hash);
 
 say $hash{$ans};
 
-my @array = qw(a b c d tokyo);
+my @array = qw(a b web 3 tset);
 
 $ans = choice2(@array);
 
 say $ans;
 
+my @array2 = qw(1 2 3 4 5 6 7  8 9 10);
+
+$ans = choice2(@array2);
+
+say $ans;
+
+my $name = type('type file name');
+
+say $name;
 

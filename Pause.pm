@@ -2,11 +2,10 @@ package Pause;
 use strict;
 use warnings;
 use feature qw( say );
-use lib qw(/home/toshi/perl/lib);
 use base qw( Exporter);
 use Devel::ArgNames;
 
-our @EXPORT = qw( pause excute skip choice choice2);
+our @EXPORT = qw( pause excute skip choice choice2 type);
 
 sub pause {
 	say "are you ready? (y/n)?";
@@ -58,13 +57,13 @@ sub choice {
 	my $hash = shift;
 	my @array = sort keys %$hash;
 	say "select below keys";
-	say "keys: items";
+	say "keys: values";
 	for (@array) {
 		say "$_ :$hash->{$_}";
 	}
 	while (1) {
 		my $ans = <STDIN>;
-		chomp $ans;
+		chomp( $ans );
 		return $ans if (grep {$_ eq $ans } @array);
 		say "type which in (@array)";
 	}
@@ -75,25 +74,55 @@ sub choice2 {
 	my @array = @_;
 	unshift @array, undef;
 	say "select below keys";
-	say "keys: items";
+	say "keys: values";
 	for ( my $i=1; $i <= $#array; $i++) {
 		say "$i :$array[$i]";
 	}
+	my $num = $#array;
+	my $num2;
+	if ($num >= 9){
+		$num2 = 9;
+	}else {
+		$num2 = $num;
+	}
+	my $regex = qr/[0-$num2]/;
+
 	while (1) {
 		my $ans = <STDIN>;
-		chomp $ans;
-		my $num = $#array;
-		unless ($ans =~ /[1..$num]/){
+		chomp( $ans );
+		unless ($ans =~ /$regex/){
 			say "type which in (1..$num)";
 			next;
 		}
 		return $array[$ans] if ( $array[$ans] );
-		say "type  which in (1..$#array)";
+		say "type  which in (1..$num)";
+	}
+}
+
+sub type {
+	my $word = shift;
+	INPUT: while (1){
+		say $word;
+		my $name = <STDIN>;
+		chomp( $name );
+		say "is it OK? : $name";
+		say "type (y or n)";
+		while (1) {
+			my $ans = <STDIN>;
+			chomp( $ans );
+			if ($ans eq 'y'){
+				last;
+			}elsif($ans eq 'n'){
+				next INPUT;
+			}else{
+				say "type (y or n)";
+				next;
+			}
+		}
+		return $name;
 	}
 }
 
 1;
-
-
 
 
