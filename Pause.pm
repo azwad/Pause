@@ -5,7 +5,7 @@ use feature qw( say );
 use base qw( Exporter);
 use Devel::ArgNames;
 
-our @EXPORT = qw( pause excute skip choice choice2 type choice3 select);
+our @EXPORT = qw( pause execute skip choice choice2 type choice3 select);
 
 sub pause {
 	say "are you ready? (y/n)?";
@@ -23,21 +23,21 @@ sub pause {
 	}
 }
 
-sub excute {
+sub execute {
 	my $code_ref = shift;
 	my @arg_name = arg_names();
 	say $arg_name[0];
 	my @args = @_;
-	say "do you excute? (y/n)?";
+	say "do you execute? (y/n)?";
 	while (1){
 		my $ans = <STDIN>;
 		chomp( $ans );
 		if ($ans eq 'y'){
-			say 'excute program';
+			say 'execute program';
 			$code_ref->(@args);
 			last;
 		}elsif($ans eq 'n'){
-			say "don't excute!";
+			say "don't execute!";
 			last;
 		}else{
 			say "type (y or n)";

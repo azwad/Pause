@@ -6,35 +6,42 @@ use feature 'say';
 
 pause;
 
-my $name = type('type file name');
+my $sample_test = sub {
+	
+	my $name = type('type file name');
 
-say $name;
+	say $name;
 
-my %hash = (
-	1 => 'yellow',
-	2 => 'black',
-	a => 'pink',
-	b => 'white',
-	cc => 'red',
-	0 => 'blue',
-);
+	my %hash = (
+		1 => 'yellow',
+		2 => 'black',
+		a => 'pink',
+		b => 'white',
+		cc => 'red',
+		0 => 'blue',
+	);
 
-my $ans = choice(\%hash);
+	my $ans = choice(\%hash);
 
-say $hash{$ans};
+	say $hash{$ans};
 
-my @array = qw(yellow black pink white red blue);
+	my @array = qw(yellow black pink white red blue);
 
-$ans = choice2(@array);
+	$ans = choice2(@array);
 
-say $ans;
+	say $ans;
 
-$ans = choice3(@array);
+	$ans = choice3(@array);
 
-say $ans;
+	say $ans;
 
-my @ans = select(@array);
+	my @ans = select(@array);
 
-say @ans;
+	say @ans;
+};
+
+execute($sample_test);
+
+say "end";
 
 
