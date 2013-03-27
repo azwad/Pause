@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-use Pause2;
+use Pause;
 use feature 'say';
 pause;
 my %hash = (
@@ -43,4 +43,10 @@ say $ans;
 my $name = type('type file name');
 
 say $name;
+
+$ans = choice3(@array);
+
+say $ans;
+
+
 

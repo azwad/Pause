@@ -5,7 +5,7 @@ use feature qw( say );
 use base qw( Exporter);
 use Devel::ArgNames;
 
-our @EXPORT = qw( pause excute skip choice choice2 type);
+our @EXPORT = qw( pause excute skip choice choice2 type choice3);
 
 sub pause {
 	say "are you ready? (y/n)?";
@@ -115,6 +115,30 @@ sub type {
 	}
 }
 
+sub choice3 {
+	my @array = @_;
+	unshift @array, undef;
+	push @array, 'else(type words)';
+	say "select below keys";
+	say "keys: values";
+	for ( my $i=1; $i <= $#array; $i++) {
+		say "$i :$array[$i]";
+	}
+
+	while (1) {
+		my $ans = <STDIN>;
+		chomp( $ans );
+		unless ($ans =~ /[0-9]/){
+			say "type which in (1..$#array)";
+			next;
+		}
+		if ($ans == $#array) {
+			my $name = Pause::type("type word");
+			return $name;
+		}
+		return $array[$ans] if ( $array[$ans] );
+		say "type  which in (1..$#array)";
+	}
+}
+
 1;
-
-
