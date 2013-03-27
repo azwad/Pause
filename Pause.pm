@@ -5,7 +5,7 @@ use feature qw( say );
 use base qw( Exporter);
 use Devel::ArgNames;
 
-our @EXPORT = qw( pause excute skip choice choice2 type choice3);
+our @EXPORT = qw( pause excute skip choice choice2 type choice3 select);
 
 sub pause {
 	say "are you ready? (y/n)?";
@@ -138,6 +138,46 @@ sub choice3 {
 		}
 		return $array[$ans] if ( $array[$ans] );
 		say "type  which in (1..$#array)";
+	}
+}
+
+sub select {
+	my @array = @_;
+	unshift @array, undef;
+	say "select numbers within a space like '2 4'";
+	say "keys: values";
+	for ( my $i=1; $i <= $#array; $i++) {
+		say "$i :$array[$i]";
+	}
+
+	INPUT: while (1) {
+		my $ans = <STDIN>;
+		chomp( $ans );
+		if ($ans =~ /^\s+$/) {
+			say "select numbers which in (1..$#array) like '2 4'";
+			next INPUT;
+		}
+
+		my @ans = ();
+		@ans = split(" ",$ans);
+
+		for (@ans) {
+			unless ($_ =~ /^[0-9]$/){
+				say "select numbers which in (1..$#array) like '2 4'";
+				next INPUT;
+			}
+		}
+		my @ansers;
+
+		for (@ans) {
+			if ( $array[$_] ){
+				push @ansers, $array[$_];
+			}else{
+				say "select numbers which in (1..$#array) like '2 4'";
+				next INPUT;
+			}
+		}
+		return @ansers;
 	}
 }
 
