@@ -42,11 +42,15 @@ my $sample_test = sub {
 	my $number = typenum('input number');
 	
 	say "typenum: $number";
+	
+	my $str = 'test end';
+
+	return $str;
 
 };
 
 execute($sample_test);
 
-say "end";
+
 
 

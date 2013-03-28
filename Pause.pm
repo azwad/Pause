@@ -28,23 +28,25 @@ sub execute {
 	my @arg_name = arg_names();
 	say $arg_name[0];
 	my @args = @_;
+	my $value;
 	say "do you execute? (y/n)?";
 	while (1){
 		my $ans = <STDIN>;
 		chomp( $ans );
 		if ($ans eq 'y'){
 			say 'excute program';
-			$code_ref->(@args);
+			$value = $code_ref->(@args);
 			last;
 		}elsif($ans eq 'n'){
 			say "don't execute!";
+			return $value = undef;
 			last;
 		}else{
 			say "type (y or n)";
 			next;
 		}
 	}
-	return 1;
+	return $value;
 }
 
 
