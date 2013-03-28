@@ -10,7 +10,7 @@ my $sample_test = sub {
 	
 	my $name = type('type file name');
 
-	say $name;
+	say "type: file name is '$name'";
 
 	my %hash = (
 		1 => 'yellow',
@@ -23,21 +23,26 @@ my $sample_test = sub {
 
 	my $ans = choice(\%hash);
 
-	say $hash{$ans};
+	say "choice :$hash{$ans}";
 
 	my @array = qw(yellow black pink white red blue);
 
 	$ans = choice2(@array);
 
-	say $ans;
+	say "choice2 :$ans";
 
 	$ans = choice3(@array);
 
-	say $ans;
+	say "choice3 :$ans";
 
 	my @ans = select(@array);
 
-	say @ans;
+	say "select:@ans";
+
+	my $number = typenum('input number');
+	
+	say "typenum: $number";
+
 };
 
 execute($sample_test);
